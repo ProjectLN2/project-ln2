@@ -1,154 +1,204 @@
-'use client'
+import Image from "next/image";
+import {
+  Cpu,
+  Download,
+  Gamepad2,
+  Gauge,
+  ShieldCheck,
+  Users,
+  Wifi,
+  Zap,
+  CheckCircle2,
+  MonitorCog,
+  HardDrive,
+  Rocket,
+} from "lucide-react";
 
-import { motion } from 'framer-motion'
-import { Cpu, Gauge, Gamepad2, ShieldCheck, Download, Users, Zap, HardDrive, Wifi, CheckCircle2, Sparkles, Terminal, Radio, Rocket, Lock, Activity } from 'lucide-react'
-
-const features = [
-  { icon: Gauge, title: 'Low idle usage', text: 'Built to reduce background activity, useless services and unnecessary Windows load.' },
-  { icon: Gamepad2, title: 'Gaming first', text: 'Designed around smooth input, launchers, multiplayer games and practical compatibility.' },
-  { icon: ShieldCheck, title: 'Anti-cheat aware', text: 'Core compatibility is prioritized before dangerous component removal.' },
-  { icon: Wifi, title: 'Real hardware ready', text: 'Essential networking, USB, storage, setup and driver systems are preserved.' },
-  { icon: Terminal, title: 'Manual tuning', text: 'Optimizations are reviewed by hand to avoid blind scripts and unstable presets.' },
-  { icon: Activity, title: 'Responsive feel', text: 'Tweaked for fast desktop interactions, clean startup and reduced system noise.' },
-]
-
-const stats = [
-  { label: 'Target idle RAM', value: '1.2–1.8 GB' },
-  { label: 'Target processes', value: '70–90' },
-  { label: 'Base', value: 'Windows 11 LTSC' },
-  { label: 'Alpha target', value: 'Q3 2026' },
-]
-
-const roadmap = [
-  'Prototype validation and stability testing',
-  'Wi‑Fi, Bluetooth, USB and NVMe compatibility pass',
-  'Eco, Balanced, Performance, Ryzen and Intel power plans',
-  'Branding pack, wallpapers, Discord community and website',
-  'Private tests before public alpha release',
-]
-
-const launchers = ['Steam', 'Epic Games', 'Battle.net', 'Ubisoft Connect', 'EA App', 'Xbox App', 'GOG Galaxy', 'Riot Client']
+const discordLink = "https://discord.gg/mvZEfZzyCk";
 
 export default function Home() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#03060c] text-white">
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute inset-0 grid-bg opacity-60" />
-        <div className="absolute -top-40 left-1/2 h-[540px] w-[540px] -translate-x-1/2 rounded-full bg-cyan-400/20 blur-[120px]" />
-        <div className="absolute top-1/3 right-0 h-[420px] w-[420px] rounded-full bg-blue-600/15 blur-[110px]" />
-      </div>
+    <main className="min-h-screen bg-[#02050a] text-white overflow-hidden">
+      <div className="fixed inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(0,229,255,0.18),transparent_35%),radial-gradient(circle_at_80%_20%,rgba(56,189,248,0.12),transparent_30%),linear-gradient(180deg,#02050a,#050914_55%,#02050a)]" />
 
-      <header className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-6 py-6">
-        <a href="#top" className="flex items-center gap-3">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-cyan-300/30 bg-cyan-300/10 shadow-lg shadow-cyan-500/10 overflow-hidden">
-            <img src="/ln2-logo.png" alt="LN2 Logo" className="h-10 w-10 object-contain" onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} />
-            <span className="absolute font-black tracking-tight">LN²</span>
+      <section className="relative max-w-7xl mx-auto px-6 py-8">
+        <nav className="flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div className="h-12 w-12 rounded-2xl bg-cyan-400/10 border border-cyan-300/25 flex items-center justify-center shadow-lg shadow-cyan-500/20">
+              <Image src="/ln2-logo.png" alt="Project LN2 logo" width={36} height={36} />
+            </div>
+            <div>
+              <p className="font-black tracking-tight">Project LN2</p>
+              <p className="text-xs text-cyan-200/70">Performance unlocked</p>
+            </div>
           </div>
-          <div>
-            <p className="font-black leading-none tracking-tight">Project LN2</p>
-            <p className="text-xs text-slate-400">Performance unlocked</p>
+
+          <div className="hidden md:flex items-center gap-8 text-sm text-slate-300">
+            <a href="#project" className="hover:text-cyan-200">Project</a>
+            <a href="#features" className="hover:text-cyan-200">Features</a>
+            <a href="#compatibility" className="hover:text-cyan-200">Compatibility</a>
+            <a href="#roadmap" className="hover:text-cyan-200">Roadmap</a>
           </div>
-        </a>
-        <nav className="hidden items-center gap-7 text-sm text-slate-300 md:flex">
-          <a href="#features" className="hover:text-white">Features</a>
-          <a href="#compatibility" className="hover:text-white">Compatibility</a>
-          <a href="#roadmap" className="hover:text-white">Roadmap</a>
-          <a href="#download" className="hover:text-white">Download</a>
+
+          <a
+            href={discordLink}
+            target="_blank"
+            className="rounded-xl bg-cyan-300 text-black px-4 py-2 font-bold hover:bg-cyan-200 transition"
+          >
+            Discord
+          </a>
         </nav>
-      </header>
 
-      <section id="top" className="relative z-10 mx-auto grid max-w-7xl items-center gap-12 px-6 pb-20 pt-12 lg:grid-cols-2 lg:pb-28 lg:pt-20">
-        <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7 }}>
-          <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-sm text-cyan-100">
-            <Rocket size={16} /> Private prototype in development
-          </div>
-          <h1 className="max-w-3xl text-6xl font-black leading-[0.9] tracking-[-0.06em] md:text-8xl">
-            Project <span className="text-cyan-300 drop-shadow-[0_0_24px_rgba(103,232,249,.35)]">LN2</span>
-          </h1>
-          <p className="mt-7 max-w-xl text-xl leading-relaxed text-slate-300">
-            A custom Windows OS built for gamers who want speed, responsiveness, low resource usage and real game compatibility.
-          </p>
-          <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-            <a href="#download" className="inline-flex items-center justify-center gap-2 rounded-2xl bg-cyan-300 px-6 py-4 font-black text-slate-950 shadow-xl shadow-cyan-500/20 transition hover:bg-cyan-200">
-              <Download size={19} /> Download coming soon
-            </a>
-            <a href="#community" className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/5 px-6 py-4 font-black transition hover:bg-white/10">
-              <Users size={19} /> Join Discord
-            </a>
-          </div>
-        </motion.div>
+        <header className="grid lg:grid-cols-2 gap-14 items-center py-24">
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-sm text-cyan-100 mb-6">
+              <Rocket size={16} />
+              Private prototype in active development
+            </div>
 
-        <motion.div initial={{ opacity: 0, scale: .96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: .8, delay: .1 }} className="relative">
-          <div className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-5 shadow-2xl shadow-cyan-950/50 backdrop-blur-xl">
-            <div className="rounded-[1.5rem] border border-cyan-300/20 bg-slate-950/80 p-6">
-              <div className="mb-8 flex items-center justify-between">
+            <h1 className="text-6xl md:text-8xl font-black tracking-tight leading-none">
+              Project <span className="text-cyan-300">LN2</span>
+            </h1>
+
+            <p className="mt-7 text-xl text-slate-300 leading-relaxed max-w-2xl">
+              LN2OS is a custom Windows 11 LTSC based gaming OS focused on low
+              resource usage, high responsiveness, clean visuals and real game
+              compatibility.
+            </p>
+
+            <div className="mt-9 flex flex-col sm:flex-row gap-4">
+              <a
+                href="#download"
+                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-cyan-300 text-black px-7 py-4 font-black hover:bg-cyan-200 transition shadow-xl shadow-cyan-500/20"
+              >
+                <Download size={19} />
+                Download coming soon
+              </a>
+
+              <a
+                href={discordLink}
+                target="_blank"
+                className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-7 py-4 font-bold hover:bg-white/10 transition"
+              >
+                <Users size={19} />
+                Join the community
+              </a>
+            </div>
+          </div>
+
+          <div className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-5 shadow-2xl shadow-cyan-950/40 backdrop-blur">
+            <div className="rounded-[1.5rem] border border-cyan-300/20 bg-black/50 p-6">
+              <div className="flex items-center justify-between mb-8">
                 <div>
                   <p className="text-sm text-slate-400">LN2 Control Center</p>
-                  <p className="text-2xl font-black">Performance Mode</p>
+                  <h2 className="text-3xl font-black">Performance Mode</h2>
                 </div>
-                <Cpu className="text-cyan-300" size={36} />
+                <MonitorCog className="text-cyan-300" size={36} />
               </div>
-              <div className="grid gap-4 sm:grid-cols-2">
-                {stats.map((stat) => (
-                  <div key={stat.label} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-                    <p className="text-sm text-slate-400">{stat.label}</p>
-                    <p className="mt-2 text-xl font-black text-cyan-200">{stat.value}</p>
-                  </div>
-                ))}
+
+              <div className="grid grid-cols-2 gap-4">
+                <Stat label="Target RAM" value="1.2–1.8 GB" />
+                <Stat label="Processes" value="70–90" />
+                <Stat label="Base" value="Win 11 LTSC" />
+                <Stat label="Alpha" value="Q3 2026" />
               </div>
+
               <div className="mt-6 rounded-2xl border border-cyan-300/20 bg-cyan-300/10 p-4 text-sm text-cyan-100">
-                Status: private testing phase. Public alpha planned after core compatibility validation.
+                Status: private testing phase. Public alpha planned after compatibility validation.
               </div>
             </div>
           </div>
-        </motion.div>
-      </section>
+        </header>
 
-      <section id="features" className="relative z-10 mx-auto max-w-7xl px-6 py-16">
-        <p className="font-black text-cyan-300">Features</p>
-        <h2 className="mt-2 max-w-3xl text-4xl font-black tracking-tight md:text-5xl">Optimized, but not broken.</h2>
-        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {features.map((feature) => <div key={feature.title} className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur transition hover:bg-white/[0.07]"><feature.icon className="mb-5 text-cyan-300" size={30}/><h3 className="mb-3 text-xl font-black">{feature.title}</h3><p className="leading-relaxed text-slate-400">{feature.text}</p></div>)}
-        </div>
-      </section>
+        <section id="project" className="py-20 border-t border-white/10">
+          <p className="text-cyan-300 font-bold">The project</p>
+          <h2 className="mt-3 text-4xl md:text-6xl font-black max-w-4xl">
+            A lightweight Windows build made for gamers, not background noise.
+          </h2>
+          <p className="mt-6 text-lg text-slate-300 max-w-4xl leading-relaxed">
+            Project LN2 started after years of testing custom Windows and Linux
+            systems. The goal is to create a clean, fast and practical gaming OS:
+            less bloat, fewer useless background services, stronger responsiveness,
+            and compatibility kept as the first priority.
+          </p>
+        </section>
 
-      <section id="compatibility" className="relative z-10 mx-auto max-w-7xl px-6 py-16">
-        <div className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-8 backdrop-blur md:p-12">
-          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <div><p className="font-black text-cyan-300">Compatibility</p><h2 className="mt-2 text-4xl font-black tracking-tight md:text-5xl">Launcher ready.</h2></div>
-            <p className="max-w-xl text-slate-400">LN2 is designed to keep the core systems needed by modern launchers, multiplayer games, runtimes and drivers.</p>
+        <section id="features" className="py-20">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+            <Card icon={<Gauge />} title="Low resource usage" text="Optimized for fewer idle processes and lower memory usage." />
+            <Card icon={<Gamepad2 />} title="Gaming first" text="Built around launchers, games, anti-cheats and real usage." />
+            <Card icon={<ShieldCheck />} title="Compatibility aware" text="Core services are preserved to avoid breaking games and setup." />
+            <Card icon={<Wifi />} title="Driver friendly" text="Wi-Fi, Ethernet, USB, storage and setup essentials are kept." />
           </div>
-          <div className="mt-9 grid gap-3 sm:grid-cols-2 md:grid-cols-4">
-            {launchers.map((item) => <div key={item} className="rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-center font-bold text-slate-200">{item}</div>)}
+        </section>
+
+        <section id="compatibility" className="py-20 border-t border-white/10">
+          <p className="text-cyan-300 font-bold">Compatibility testing</p>
+          <h2 className="mt-3 text-4xl md:text-6xl font-black">Tested with real games.</h2>
+
+          <div className="mt-8 grid md:grid-cols-2 gap-5">
+            {["The Finals", "Splitgate 2", "Delta Force", "Counter-Strike 2"].map((game) => (
+              <div key={game} className="flex items-center gap-4 rounded-3xl border border-white/10 bg-white/[0.04] p-5">
+                <CheckCircle2 className="text-cyan-300" />
+                <span className="font-bold">{game}</span>
+              </div>
+            ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section id="roadmap" className="relative z-10 mx-auto grid max-w-7xl gap-10 px-6 py-16 lg:grid-cols-2">
-        <div><p className="font-black text-cyan-300">Roadmap</p><h2 className="mt-2 text-4xl font-black tracking-tight md:text-5xl">Alpha planned for Q3 2026.</h2><p className="mt-5 text-lg leading-relaxed text-slate-400">LN2 is being tested and refined. Stability, hardware support and game compatibility come before aggressive removals.</p></div>
-        <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur">
-          {roadmap.map((item) => <div key={item} className="flex gap-4 border-b border-white/10 py-4 last:border-b-0"><CheckCircle2 className="shrink-0 text-cyan-300" size={22}/><span className="text-slate-200">{item}</span></div>)}
-        </div>
-      </section>
+        <section id="roadmap" className="py-20 border-t border-white/10">
+          <p className="text-cyan-300 font-bold">Roadmap</p>
+          <h2 className="mt-3 text-4xl md:text-6xl font-black">What comes next.</h2>
 
-      <section id="download" className="relative z-10 mx-auto max-w-7xl px-6 py-16">
-        <div className="rounded-[2rem] border border-cyan-300/20 bg-cyan-300/10 p-8 text-center md:p-12">
-          <HardDrive className="mx-auto mb-5 text-cyan-200" size={44}/>
-          <h2 className="text-4xl font-black tracking-tight md:text-5xl">Downloads are not public yet.</h2>
-          <p className="mx-auto mt-5 max-w-2xl text-lg text-slate-300">The first alpha will be shared once compatibility tests are complete. Join Discord to follow progress and testing updates.</p>
-        </div>
-      </section>
+          <div className="mt-8 grid lg:grid-cols-3 gap-5">
+            <Card icon={<Cpu />} title="V2 optimization" text="Process count, RAM usage, services and post-install tweaks." />
+            <Card icon={<HardDrive />} title="Installer polish" text="Cleaner unattended setup, local admin account and dark theme." />
+            <Card icon={<Zap />} title="Public alpha" text="Alpha release planned after Wi-Fi, drivers and game tests are validated." />
+          </div>
+        </section>
 
-      <section id="community" className="relative z-10 mx-auto max-w-7xl px-6 py-16 pb-24">
-        <div className="flex flex-col gap-8 rounded-[2rem] border border-white/10 bg-white/[0.04] p-8 backdrop-blur md:flex-row md:items-center md:justify-between md:p-12">
-          <div><p className="font-black text-cyan-300">Community</p><h2 className="mt-2 text-4xl font-black tracking-tight md:text-5xl">Join Project LN2.</h2><p className="mt-4 text-lg text-slate-400">Announcements, testing progress, screenshots and future alpha information.</p></div>
-          <a href="#" className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-7 py-4 font-black text-slate-950 transition hover:bg-slate-200"><Radio size={19}/> Discord link here</a>
-        </div>
-      </section>
+        <section id="download" className="py-20">
+          <div className="rounded-[2rem] border border-cyan-300/20 bg-cyan-300/10 p-10 md:p-14 text-center">
+            <h2 className="text-4xl md:text-6xl font-black">LN2OS is not public yet.</h2>
+            <p className="mt-5 text-slate-300 text-lg max-w-3xl mx-auto">
+              Downloads will be available once the build is stable enough for public testing.
+              Join the Discord for announcements, changelogs and alpha access updates.
+            </p>
+            <a
+              href={discordLink}
+              target="_blank"
+              className="mt-8 inline-flex items-center justify-center gap-2 rounded-2xl bg-white text-black px-8 py-4 font-black hover:bg-slate-200 transition"
+            >
+              <Users size={19} />
+              Join Project LN2
+            </a>
+          </div>
+        </section>
 
-      <footer className="relative z-10 mx-auto flex max-w-7xl flex-col justify-between gap-3 border-t border-white/10 px-6 py-8 text-sm text-slate-500 md:flex-row">
-        <span>© 2026 Project LN2. All rights reserved.</span><span>Performance unlocked.</span>
-      </footer>
+        <footer className="border-t border-white/10 py-8 text-sm text-slate-500 flex flex-col md:flex-row justify-between gap-3">
+          <span>© 2026 Project LN2. All rights reserved.</span>
+          <span>Performance unlocked.</span>
+        </footer>
+      </section>
     </main>
-  )
+  );
+}
+
+function Stat({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+      <p className="text-sm text-slate-400">{label}</p>
+      <p className="mt-2 text-xl font-black text-cyan-200">{value}</p>
+    </div>
+  );
+}
+
+function Card({ icon, title, text }: { icon: React.ReactNode; title: string; text: string }) {
+  return (
+    <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 hover:bg-white/[0.07] transition">
+      <div className="text-cyan-300 mb-5">{icon}</div>
+      <h3 className="text-xl font-black">{title}</h3>
+      <p className="mt-3 text-slate-400 leading-relaxed">{text}</p>
+    </div>
+  );
 }
